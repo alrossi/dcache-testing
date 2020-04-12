@@ -109,6 +109,13 @@ set_skip() {
 		return
 	fi
 
+	if [ $SPR -eq $REQ ] && [ $SDR -ne $OFF ] && [ $SPL -eq $OFF ] ; then
+		DESCRIPTION="The v5 client freezes when using xroots, the door allows it through \
+		but the pool does not support TLS"
+		SKIP=$TRUE
+		return
+	fi
+
 	SKIP=$FALSE
 }
 
