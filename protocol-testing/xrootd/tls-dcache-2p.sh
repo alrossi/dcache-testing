@@ -102,6 +102,13 @@ set_endpoints() {
 }
 
 set_skip() {
+	if [ $SPR -eq $OFF ] && [ $SDR -ne $REQ ] && [ $SPL -eq $OFF ] ; then
+		DESCRIPTION="The v4 client freezes when the door allows it through \
+		but the pool requires TLS"
+		SKIP=$TRUE
+		return
+	fi
+
 	SKIP=$FALSE
 }
 
