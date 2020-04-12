@@ -1,0 +1,89 @@
+#!/bin/bash
+SOURCES="\
+dcap://dmsdca20.fnal.gov:24125/pnfs/fs/usr/test/arossi/online/153/data_00-74-8-2016_01_25_19.29.18.449341341-dcap \
+dcap://dmsdca17.fnal.gov:24125/pnfs/fs/usr/test/arossi/online/153/data_00-84-1-2016_01_22_01.28.16.649917133-dcap \
+dcap://dmsdca22.fnal.gov:24125/pnfs/fs/usr/test/arossi/online/084/data_00-37-3-2016_01_28_13.25.15.843732566-dcap \
+dcap://dmsdca21.fnal.gov:24125/pnfs/fs/usr/test/arossi/online/084/data_00-36-10-2016_01_21_14.58.13.624733060-dcap \
+dcap://dmsdca20.fnal.gov:24125/pnfs/fs/usr/test/arossi/online/084/data_00-74-3-2016_01_28_23.34.46.748826292-dcap \
+dcap://dmsdca19.fnal.gov:24125/pnfs/fs/usr/test/arossi/online/084/data_00-95-8-2016_01_25_12.18.06.125904066-dcap \
+dcap://dmsdca22.fnal.gov:24125/pnfs/fs/usr/test/arossi/online/205/data_00-51-6-2016_01_28_11.12.57.647031449-dcap \
+dcap://dmsdca21.fnal.gov:24125/pnfs/fs/usr/test/arossi/online/205/data_00-56-4-2016_01_25_20.58.40.155063788-dcap \
+dcap://dmsdca21.fnal.gov:24125/pnfs/fs/usr/test/arossi/online/010/data_00-22-6-2016_01_21_13.39.08.951193218-dcap \
+dcap://dmsdca19.fnal.gov:24125/pnfs/fs/usr/test/arossi/online/010/data_00-57-6-2016_01_21_17.29.33.869869055-dcap \
+dcap://dmsdca17.fnal.gov:24125/pnfs/fs/usr/test/arossi/online/202/data_00-66-9-2016_01_21_22.37.10.565475744-dcap \
+dcap://dmsdca18.fnal.gov:24125/pnfs/fs/usr/test/arossi/online/202/data_00-72-7-2016_01_28_11.57.15.151882797-dcap \
+dcap://dmsdca17.fnal.gov:24125/pnfs/fs/usr/test/arossi/online/013/data_00-98-2-2016_01_25_21.12.26.206723975-dcap \
+dcap://dmsdca18.fnal.gov:24125/pnfs/fs/usr/test/arossi/online/013/data_00-22-4-2016_01_29_09.58.15.145744649-dcap \
+dcap://dmsdca22.fnal.gov:24125/pnfs/fs/usr/test/arossi/online/087/data_00-98-9-2016_01_21_20.12.02.838312070-dcap \
+dcap://dmsdca21.fnal.gov:24125/pnfs/fs/usr/test/arossi/online/087/data_00-55-2-2016_01_21_21.46.43.436265952-dcap \
+dcap://dmsdca20.fnal.gov:24125/pnfs/fs/usr/test/arossi/online/087/data_00-51-3-2016_01_28_19.53.39.432375849-dcap \
+dcap://dmsdca19.fnal.gov:24125/pnfs/fs/usr/test/arossi/online/087/data_00-32-8-2016_01_28_13.42.18.543307780-dcap \
+dcap://dmsdca21.fnal.gov:24125/pnfs/fs/usr/test/arossi/online/162/data_00-14-2-2016_03_16_23.37.42.104120340-dcap \
+dcap://dmsdca19.fnal.gov:24125/pnfs/fs/usr/test/arossi/online/162/data_00-93-8-2016_01_25_17.04.08.217009869-dcap \
+dcap://dmsdca17.fnal.gov:24125/pnfs/fs/usr/test/arossi/online/162/data_00-62-2-2016_01_28_10.09.16.468530739-dcap \
+dcap://dmsdca22.fnal.gov:24125/pnfs/fs/usr/test/arossi/online/162/data_00-61-4-2016_01_25_15.10.32.430180358-dcap \
+dcap://dmsdca20.fnal.gov:24125/pnfs/fs/usr/test/arossi/online/162/data_00-45-4-2016_01_25_23.07.20.934015343-dcap \
+dcap://dmsdca18.fnal.gov:24125/pnfs/fs/usr/test/arossi/online/162/data_00-58-9-2016_01_25_15.41.26.921363529-dcap \
+dcap://dmsdca20.fnal.gov:24125/pnfs/fs/usr/test/arossi/online/124/data_00-12-4-2016_01_21_13.34.25.183014811-dcap \
+dcap://dmsdca17.fnal.gov:24125/pnfs/fs/usr/test/arossi/online/124/data_00-18-4-2016_01_28_12.09.56.828804481-dcap \
+dcap://dmsdca20.fnal.gov:24125/pnfs/fs/usr/test/arossi/online/034/data_00-82-3-2016_01_21_23.47.51.103450138-dcap \
+dcap://dmsdca17.fnal.gov:24125/pnfs/fs/usr/test/arossi/online/034/data_00-76-7-2016_01_21_19.03.27.872780680-dcap \
+dcap://dmsdca21.fnal.gov:24125/pnfs/fs/usr/test/arossi/online/034/data_00-33-9-2016_01_25_15.50.07.891940134-dcap \
+dcap://dmsdca22.fnal.gov:24125/pnfs/fs/usr/test/arossi/online/267/data_00-29-8-2016_03_17_17.03.54.026047317-dcap \
+dcap://dmsdca21.fnal.gov:24125/pnfs/fs/usr/test/arossi/online/267/data_00-90-8-2016_01_21_15.38.46.739278087-dcap \
+dcap://dmsdca20.fnal.gov:24125/pnfs/fs/usr/test/arossi/online/267/data_00-23-6-2016_01_21_20.41.21.619541314-dcap \
+dcap://dmsdca19.fnal.gov:24125/pnfs/fs/usr/test/arossi/online/267/data_00-13-3-2016_01_21_19.53.19.582510494-dcap \
+dcap://dmsdca18.fnal.gov:24125/pnfs/fs/usr/test/arossi/online/267/data_00-97-6-2016_01_28_15.11.20.379021941-dcap \
+dcap://dmsdca17.fnal.gov:24125/pnfs/fs/usr/test/arossi/online/267/data_00-86-5-2016_01_25_12.30.26.345420053-dcap \
+dcap://dmsdca20.fnal.gov:24125/pnfs/fs/usr/test/arossi/online/258/data_00-4-8-2016_01_21_13.28.06.945621397-dcap \
+dcap://dmsdca17.fnal.gov:24125/pnfs/fs/usr/test/arossi/online/258/data_00-89-2-2016_01_21_18.25.09.575920706-dcap \
+dcap://dmsdca22.fnal.gov:24125/pnfs/fs/usr/test/arossi/online/113/data_00-77-4-2016_03_16_18.42.08.389184827-dcap \
+dcap://dmsdca21.fnal.gov:24125/pnfs/fs/usr/test/arossi/online/113/data_00-62-7-2016_03_17_16.55.48.569598772-dcap \
+dcap://dmsdca20.fnal.gov:24125/pnfs/fs/usr/test/arossi/online/113/data_00-52-4-2016_01_21_17.37.37.567125148-dcap \
+dcap://dmsdca19.fnal.gov:24125/pnfs/fs/usr/test/arossi/online/113/data_00-60-2-2016_01_25_11.55.40.231992897-dcap \
+dcap://dmsdca18.fnal.gov:24125/pnfs/fs/usr/test/arossi/online/113/data_00-65-1-2016_01_21_19.27.02.744673232-dcap \
+dcap://dmsdca17.fnal.gov:24125/pnfs/fs/usr/test/arossi/online/113/data_00-63-7-2016_01_28_17.41.55.009317451-dcap \
+dcap://dmsdca15.fnal.gov:24125/pnfs/fs/usr/test/arossi/online/113/data_00-0-4-2016_01_21_16.11.28.294788841-dcap \
+dcap://dmsdca22.fnal.gov:24125/pnfs/fs/usr/test/arossi/online/113/data_00-77-5-2016_01_25_22.37.13.125434000-dcap \
+dcap://dmsdca21.fnal.gov:24125/pnfs/fs/usr/test/arossi/online/113/data_00-51-3-2016_01_28_22.47.49.919065993-dcap \
+dcap://dmsdca20.fnal.gov:24125/pnfs/fs/usr/test/arossi/online/113/data_00-99-9-2016_01_28_17.47.56.374478194-dcap \
+dcap://dmsdca19.fnal.gov:24125/pnfs/fs/usr/test/arossi/online/113/data_00-56-6-2016_01_28_18.10.50.454804249-dcap \
+dcap://dmsdca18.fnal.gov:24125/pnfs/fs/usr/test/arossi/online/113/data_00-81-3-2016_01_25_12.06.56.576730434-dcap \
+dcap://dmsdca19.fnal.gov:24125/pnfs/fs/usr/test/arossi/online/059/data_00-88-7-2016_01_21_23.38.52.062187867-dcap \
+dcap://dmsdca22.fnal.gov:24125/pnfs/fs/usr/test/arossi/online/059/data_00-64-3-2016_01_25_16.38.40.309349077-dcap \
+dcap://dmsdca21.fnal.gov:24125/pnfs/fs/usr/test/arossi/online/200/data_00-86-6-2016_01_21_19.47.24.910779291-dcap \
+dcap://dmsdca19.fnal.gov:24125/pnfs/fs/usr/test/arossi/online/200/data_00-69-5-2016_01_25_15.30.11.656735891-dcap \
+dcap://dmsdca19.fnal.gov:24125/pnfs/fs/usr/test/arossi/online/003/data_00-86-3-2016_03_16_16.56.45.283928463-dcap \
+dcap://dmsdca22.fnal.gov:24125/pnfs/fs/usr/test/arossi/online/003/data_00-22-3-2016_03_16_20.17.18.772048636-dcap \
+dcap://dmsdca18.fnal.gov:24125/pnfs/fs/usr/test/arossi/online/003/data_00-102-6-2016_03_17_17.06.22.110424511-dcap \
+dcap://dmsdca21.fnal.gov:24125/pnfs/fs/usr/test/arossi/online/003/data_00-93-1-2016_01_21_17.36.03.422595876-dcap \
+dcap://dmsdca17.fnal.gov:24125/pnfs/fs/usr/test/arossi/online/003/data_00-15-9-2016_01_28_13.16.21.618685687-dcap \
+dcap://dmsdca20.fnal.gov:24125/pnfs/fs/usr/test/arossi/online/003/data_00-59-3-2016_01_25_16.55.31.399509818-dcap \
+dcap://dmsdca15.fnal.gov:24125/pnfs/fs/usr/test/arossi/online/003/data_00-32-5-2016_01_21_22.21.52.526658791-dcap \
+dcap://dmsdca19.fnal.gov:24125/pnfs/fs/usr/test/arossi/online/003/data_00-98-4-2016_01_28_19.07.28.161795104-dcap \
+dcap://dmsdca22.fnal.gov:24125/pnfs/fs/usr/test/arossi/online/003/data_00-90-4-2016_01_25_22.12.08.890656698-dcap \
+dcap://dmsdca18.fnal.gov:24125/pnfs/fs/usr/test/arossi/online/003/data_00-36-5-2016_01_21_20.28.48.224316445-dcap \
+dcap://dmsdca21.fnal.gov:24125/pnfs/fs/usr/test/arossi/online/003/data_00-37-5-2016_01_21_22.39.30.054947953-dcap \
+dcap://dmsdca17.fnal.gov:24125/pnfs/fs/usr/test/arossi/online/003/data_00-59-2-2016_01_21_19.27.16.673581971-dcap \
+dcap://dmsdca20.fnal.gov:24125/pnfs/fs/usr/test/arossi/online/003/data_00-75-8-2016_01_21_15.55.32.523000292-dcap \
+dcap://dmsdca15.fnal.gov:24125/pnfs/fs/usr/test/arossi/online/003/data_00-64-9-2016_01_28_23.39.35.671884059-dcap \
+dcap://dmsdca19.fnal.gov:24125/pnfs/fs/usr/test/arossi/online/003/data_00-97-1-2016_01_25_13.58.52.323235592-dcap \
+dcap://dmsdca22.fnal.gov:24125/pnfs/fs/usr/test/arossi/online/003/data_00-82-1-2016_01_28_19.15.46.283238910-dcap \
+dcap://dmsdca18.fnal.gov:24125/pnfs/fs/usr/test/arossi/online/003/data_00-67-7-2016_01_25_13.26.02.251046619-dcap \
+dcap://dmsdca21.fnal.gov:24125/pnfs/fs/usr/test/arossi/online/003/data_00-92-3-2016_01_21_17.03.04.452957856-dcap \
+dcap://dmsdca19.fnal.gov:24125/pnfs/fs/usr/test/arossi/online/129/data_00-137-10-2016_03_16_19.42.54.011118420-dcap \
+dcap://dmsdca22.fnal.gov:24125/pnfs/fs/usr/test/arossi/online/129/data_00-85-1-2016_01_25_15.25.40.343683139-dcap \
+dcap://dmsdca18.fnal.gov:24125/pnfs/fs/usr/test/arossi/online/129/data_00-11-1-2016_01_21_22.01.07.341811797-dcap \
+dcap://dmsdca21.fnal.gov:24125/pnfs/fs/usr/test/arossi/online/129/data_00-53-2-2016_01_21_19.58.59.817007767-dcap \
+dcap://dmsdca17.fnal.gov:24125/pnfs/fs/usr/test/arossi/online/129/data_00-88-6-2016_01_25_12.26.34.684899097-dcap \
+dcap://dmsdca20.fnal.gov:24125/pnfs/fs/usr/test/arossi/online/129/data_00-53-1-2016_01_21_13.51.14.355095988-dcap \
+dcap://dmsdca15.fnal.gov:24125/pnfs/fs/usr/test/arossi/online/129/data_00-29-7-2016_01_28_08.18.34.769713070-dcap \
+dcap://dmsdca19.fnal.gov:24125/pnfs/fs/usr/test/arossi/online/129/data_00-32-7-2016_01_25_12.01.55.530709368-dcap \
+dcap://dmsdca22.fnal.gov:24125/pnfs/fs/usr/test/arossi/online/129/data_00-71-9-2016_01_21_19.16.33.130484767-dcap \
+"
+
+DCCP=`which dccp`
+for f in ${SOURCES}
+do
+    ${DCCP} ${f} /dev/null
+done

@@ -1,0 +1,25 @@
+version 2.1
+mapping "/DC=org/DC=doegrids/OU=People/CN=Albert Louis Rossi 193262" arossi
+mapping "/DC=com/DC=DigiCert-Grid/O=Open Science Grid/OU=People/CN=Albert Louis Rossi 1714" arossi
+mapping "arossi@FNAL.GOV" arossi
+
+mapping "/DC=org/DC=doegrids/OU=People/CN=Dmitry Litvintsev 257737" litvinse
+mapping "litvinse@FNAL.GOV" litvinse
+
+# the following are the user auth records
+login arossi read-write 8773 1530,0 / / /
+  /DC=com/DC=DigiCert-Grid/O=Open Science Grid/OU=People/CN=Albert Louis Rossi 1714 
+  /DC=org/DC=doegrids/OU=People/CN=Albert Louis Rossi 193262
+  arossi@FNAL.GOV
+
+login litvinse read-write 8637 3200,0 / /pnfs/fs/usr/test/litvinse /pnfs/fs/usr/test/litvinse
+  /DC=org/DC=doegrids/OU=People/CN=Dmitry Litvintsev 257737
+  caf/cdf/litvinse@FNAL.GOV
+  litvinse/cdf/glidecaf@FNAL.GOV
+  litvinse/cdf/h2caf@FNAL.GOV
+  litvinse@FNAL.GOV
+
+# the following are the user auth records
+passwd admin 4db02d72 read-write 0 0 / /
+passwd arossi ba22a191 read-write 8773 1530 / /pnfs/fs/usr/test/arossi
+passwd litvinse 8aee6153 read-write 8637 3200 / /pnfs/fs/usr/test/litvinse

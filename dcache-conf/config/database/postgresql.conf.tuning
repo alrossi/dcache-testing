@@ -1,0 +1,16 @@
+Total Memory = ~64GB
+
+max_connections = 200			# (change requires restart)
+shared_buffers = 8192MB			# min 128kB
+effective_cache_size=46080MB
+work_mem = 96MB
+maintenance_work_mem = 2048MB
+checkpoint_segments = 64		# in logfile segments, min 1, 16MB each
+checkpoint_completion_target = 0.9
+wal_buffers = 328MB
+#default_statistics_target = 100	# range 1-10000
+synchronous_commit = off
+vacuum_cost_delay = 50ms
+wal_writer_delay = 1s
+
+
