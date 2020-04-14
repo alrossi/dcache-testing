@@ -32,10 +32,10 @@ DOOR[1]="dmsdca18.fnal.gov:1094"
 DOOR[2]="dmsdca18.fnal.gov:1095"
 DOOR[3]="dmsdca18.fnal.gov:1096"
 
-FPTH[0]="//pnfs/fs/usr/test/arossi/scratch/tls-off/testdata"
-FPTH[1]="//pnfs/fs/usr/test/arossi/scratch/tls-strict/testdata"
-FPTH[2]="//pnfs/fs/usr/test/arossi/scratch/tls-optional/testdata"
-FPTH[3]="//pnfs/fs/usr/test/arossi/scratch/tls-tpc/testdata"
+FPTH[0]="//pnfs/fs/usr/test/arossi/scratch/tls-off/testdata1"
+FPTH[1]="//pnfs/fs/usr/test/arossi/scratch/tls-strict/testdata1"
+FPTH[2]="//pnfs/fs/usr/test/arossi/scratch/tls-optional/testdata1"
+FPTH[3]="//pnfs/fs/usr/test/arossi/scratch/tls-tpc/testdata1"
 
 ## GLOBALS
 
