@@ -115,11 +115,12 @@ set_oracle() {
 		$REQ)
 			if [ $TDR -eq $OFF ] || [ $TPL -eq $OFF ] ; then
 				if [ "$SDR" == "$TDR" ] ; then
-					DESCRIPTION="Case should fail because the destination protocol is xroots\
-				 	but either the destination door or pool has TLS turned off."
-					ORACLE=$FAIL
-				return
+					return
 				fi
+				DESCRIPTION="Case should fail because the destination protocol is xroots\
+				 	but either the destination door or pool has TLS turned off."
+				ORACLE=$FAIL
+				return;
 			fi
 		;;
 
