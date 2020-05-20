@@ -192,7 +192,7 @@ set_oracle() {
 		;;
 
 		$OPT)
-			if [ $TDR -eq $TPC ] || [ $TPL -eq $TPC ] ; then
+			if [ $DIR -eq $FRXRD ] && ( [ $TDR -eq $TPC ] || [ $TPL -eq $TPC ] ) ; then
 				DESCRIPTION="Case should fail because the destination protocol is insufficient\
 				 for TLS on TPC required by destination pool."
 				ORACLE=$FAIL
