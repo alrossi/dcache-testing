@@ -251,7 +251,7 @@ set_oracle() {
 set_tpc() {
 	case $SPR in
 		$REQ)
-			if [ $TPL -ne $OFF ] ; then 
+			if [ $DIR -eq $TOXRD ] || [ $TPL -ne $OFF ] ; then 
 				TPCL=$REQ
 				return
 			fi
