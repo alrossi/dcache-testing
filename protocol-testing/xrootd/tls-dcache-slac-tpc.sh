@@ -265,7 +265,7 @@ set_tpc() {
 		;;
 
 		$OFF)
-			if [ $DIR -eq TOXRD ] && [ $TPL -ne $OFF ] ; then
+			if [ $DIR -eq $TOXRD ] && [ $TPL -ne $OFF ] ; then
 				TPCL=$OPT
 				return
 			fi	
