@@ -169,6 +169,13 @@ set_skip() {
 			return
 		fi
 
+		if [ $TPCL -eq $OFF ] && [ $SDR -eq $OFF ] ; then
+			DESCRIPTION="The v5 client freezes against the destination door when TLS\
+			TPC is off but the door requires TLS."
+			SKIP=$TRUE
+			return
+		fi
+
 		if [ $SPR -eq $REQ ] && [ $SDR -eq $OFF ] ; then
 			DESCRIPTION="The v5 client freezes against the source when it not a TLS\
 			server but the protocol expressed is xroots."
