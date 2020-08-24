@@ -16,7 +16,7 @@ ALL="${HEADN} ${POOLN}"
 for HOST in ${ALL}
 do
 	echo "UNMOUNTING NFS ON $HOST"
-	ssh ${HOST} "umount -l /pnfs/fs"
+	ssh root@${HOST} "umount -l /pnfs/fs"
 done
 
 echo "UNMOUNTING NFS LOCALLY"
@@ -25,6 +25,6 @@ umount -l /pnfs/fs
 for HOST in ${ALL}
 do
 	echo "STOPPING DCACHE ON $HOST"
-	ssh ${HOST} "source ~arossi/.bashrc ; dcache stop"
+	ssh root@${HOST} "source ~arossi/.bashrc ; dcache stop"
 done
 

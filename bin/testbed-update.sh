@@ -1,7 +1,7 @@
 #!/bin/bash
 
-RPMDIR=/home/arossi/work/dcache/packages/fhs/target/rpmbuild/RPMS/noarch
-RPM=`dcache-rpm`
+RPMDIR=/Work/fnal/dCache/dcache/packages/fhs/target/rpmbuild/RPMS/noarch/
+RPM=`ls $RPMDIR`
 
 HEAD=$1
 POOLS=$2
@@ -18,9 +18,9 @@ ALL="${HEADN} ${POOLN}"
 
 for HOST in ${ALL}
 do
-	ssh ${HOST} "rm -f ~/dcache-*.noarch.rpm"
-	scp ${RPMDIR}/${RPM} ${HOST}:~/
-	ssh ${HOST} "rm -rf /usr/share/dcache"
-    ssh ${HOST} "rpm -Uvh --force ~/${RPM}"
+	ssh root@${HOST} "rm -f ~/dcache-*.noarch.rpm"
+	scp ${RPMDIR}/${RPM} root@${HOST}:~/
+	ssh root@${HOST} "rm -rf /usr/share/dcache"
+    	ssh root@${HOST} "rpm -Uvh --force ~/${RPM}"
 done
 

@@ -16,5 +16,5 @@ ALL="${HEADN} ${POOLN}"
 
 for HOST in ${ALL}
 do
-	ssh ${HOST} "rm -rf /var/log/dcache/*"
+	ssh root@${HOST} "rm -rf /var/log/dcache/*"
 done
