@@ -1,0 +1,41 @@
+csm set checksumtype adler32 md5
+csm set policy -scrub=off
+csm set policy -onread=off -onwrite=off -onflush=off -onrestore=off -enforcecrc=on -getcrcfromhsm=off
+
+#
+# Flushing Thread setup
+#
+flush set max active 1000
+flush set interval 60
+flush set retry delay 60
+#flush set queue order FIFO
+
+#
+# Nearline storage
+#
+hsm create enstore enstore script -pnfs=/pnfs/fs -command=/usr/local/bin/real-encp.sh -c:gets=36 -c:puts=16 -c:removes=1
+
+mover queue create regular -order=LIFO
+mover queue create p2p -order=LIFO
+mover set max active -queue=regular 10000
+mover set max active -queue=p2p 5
+jtm set timeout -queue=p2p -lastAccess=43200 -total=86400
+
+#
+# MigrationModule
+#
+set heartbeat 30
+set report remove on
+set breakeven 0.7
+set mover cost factor 0.5
+set duplicate request ignore
+
+#
+#  Pool to Pool (P2P)
+#
+
+set gap 4G
+rh set timeout 604800
+st set timeout 604800
+rm set timeout 14400
+#sweeper reclaim margin 0.0
