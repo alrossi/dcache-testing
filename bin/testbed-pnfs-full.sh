@@ -1,11 +1,11 @@
 #!/bin/bash
 
 make_leaves() {
-    for d1 in `seq 0 2`
+    for d1 in `seq 0 $1`
     do
-        for d2 in `seq 0 9`
+        for d2 in `seq 0 $2`
         do
-            for d3 in `seq 0 9`
+            for d3 in `seq 0 $3`
             do
                 mkdir ${d1}${d2}${d3}
             done
@@ -21,7 +21,55 @@ echo "REPLICA" > ".(tag)(RetentionPolicy)"
 echo "dcache-devel-test" > ".(tag)(file_family)"
 echo "10" > ".(tag)(file_family_width)"
 echo "volatile" > ".(tag)(storage_group)"
-#make_leaves
+#make_leaves 0 1 1
+
+mkdir -p /pnfs/fs/usr/test/arossi/volatile/wan
+cd /pnfs/fs/usr/test/arossi/volatile/wan
+pwd
+echo "wan" > ".(tag)(storage_group)"
+#make_leaves 0 1 1
+
+mkdir -p /pnfs/fs/usr/test/arossi/volatile/stage
+cd /pnfs/fs/usr/test/arossi/volatile/stage
+pwd
+echo "stage" > ".(tag)(storage_group)"
+#make_leaves 0 1 1
+
+mkdir -p /pnfs/fs/usr/test/arossi/volatile/tls/off
+cd /pnfs/fs/usr/test/arossi/volatile/tls/off
+echo "tls-off" > ".(tag)(storage_group)"
+#make_leaves 0 1 1
+
+mkdir -p /pnfs/fs/usr/test/arossi/volatile/tls/tpc
+cd /pnfs/fs/usr/test/arossi/volatile/tls/tpc
+echo "tls-tpc" > ".(tag)(storage_group)"
+#make_leaves 0 1 1
+
+mkdir -p /pnfs/fs/usr/test/arossi/volatile/tls/opt
+cd /pnfs/fs/usr/test/arossi/volatile/tls/opt
+echo "tls-optional" > ".(tag)(storage_group)"
+#make_leaves 0 1 1
+
+mkdir -p /pnfs/fs/usr/test/arossi/volatile/tls/req
+cd /pnfs/fs/usr/test/arossi/volatile/tls/req
+echo "tls-strict" > ".(tag)(storage_group)"
+#make_leaves 0 1 1
+
+mkdir -p /pnfs/fs/usr/test/arossi/persistent
+cd /pnfs/fs/usr/test/arossi/persistent
+pwd
+echo "ONLINE" > ".(tag)(AccessLatency)"
+echo "REPLICA" > ".(tag)(RetentionPolicy)"
+echo "dcache-devel-test" > ".(tag)(file_family)"
+echo "10" > ".(tag)(file_family_width)"
+echo "persistent" > ".(tag)(storage_group)"
+#make_leaves 0 1 1
+
+mkdir -p /pnfs/fs/usr/test/arossi/persistent/highavail
+cd /pnfs/fs/usr/test/arossi/persistent/highavail
+pwd
+echo "highavail" > ".(tag)(storage_group)"
+#make_leaves 0 1 1
 
 mkdir -p /pnfs/fs/usr/test/arossi/tape
 cd /pnfs/fs/usr/test/arossi/tape
@@ -30,62 +78,23 @@ echo "NEARLINE" > ".(tag)(AccessLatency)"
 echo "CUSTODIAL" > ".(tag)(RetentionPolicy)"
 echo "dcache-devel-test" > ".(tag)(file_family)"
 echo "10" > ".(tag)(file_family_width)"
-echo "hsm" > ".(tag)(storage_group)"
-#make_leaves
+echo "tape" > ".(tag)(storage_group)"
+#make_leaves 0 1 1
 
-cd /pnfs/fs/usr/test/arossi
-mkdir stage
-cd stage
-pwd
-echo "NEARLINE" > ".(tag)(AccessLatency)"
-echo "CUSTODIAL" > ".(tag)(RetentionPolicy)"
-echo "dcache-devel-test" > ".(tag)(file_family)"
-echo "10" > ".(tag)(file_family_width)"
-echo "stage" > ".(tag)(storage_group)"
-#make_leaves
-
-cd /pnfs/fs/usr/test/arossi
-mkdir online
-cd online
+mkdir -p /pnfs/fs/usr/test/arossi/tape/persistent
+cd /pnfs/fs/usr/test/arossi/tape/persistent
 pwd
 echo "ONLINE" > ".(tag)(AccessLatency)"
-echo "dcache-devel-test" > ".(tag)(file_family)"
-echo "10" > ".(tag)(file_family_width)"
+echo "persistent-tape" > ".(tag)(storage_group)"
+#make_leaves 0 1 1
 
-mkdir resilient1 resilient2 resilient3 resilient4 tape
-
-cd tape
+mkdir -p /pnfs/fs/usr/test/arossi/tape/internal
+cd /pnfs/fs/usr/test/arossi/tape/internal
 pwd
-echo "CUSTODIAL" > ".(tag)(RetentionPolicy)"
-echo "resilient-0" > ".(tag)(storage_group)"
-#make_leaves
-
-cd ../resilient1
-pwd
-echo "REPLICA" > ".(tag)(RetentionPolicy)"
-echo "resilient-1" > ".(tag)(storage_group)"
-#make_leaves
-
-cd ../resilient2
-pwd
-echo "REPLICA" > ".(tag)(RetentionPolicy)"
-echo "resilient-2" > ".(tag)(storage_group)"
-#make_leaves
-
-cd ../resilient3
-pwd
-echo "REPLICA" > ".(tag)(RetentionPolicy)"
-echo "resilient-3" > ".(tag)(storage_group)"
-#make_leaves
-
-cd ../resilient4
-pwd
-echo "REPLICA" > ".(tag)(RetentionPolicy)"
-echo "resilient-4" > ".(tag)(storage_group)"
-#make_leaves
+echo "internal" > ".(tag)(storage_group)"
+#make_leaves 0 1 1
 
 cd /pnfs/fs/usr/test/arossi
 chown -R 8773 .
 chgrp -R 1530 .
 chmod -R ugo+rwx .
-
