@@ -84,10 +84,9 @@ echo "persistent" > ".(tag)(storage_group)"
 mkdir -p /pnfs/fs/usr/test/arossi/tape
 cd /pnfs/fs/usr/test/arossi/tape
 pwd
-echo "NEARLINE" > ".(tag)(AccessLatency)"
+echo "CUSTODIAL" > ".(tag)(RetentionPolicy)"
 echo "dcache-devel-test" > ".(tag)(file_family)"
 echo "10" > ".(tag)(file_family_width)"
-
 
 mkdir -p /pnfs/fs/usr/test/arossi/tape/persistent
 cd /pnfs/fs/usr/test/arossi/tape/persistent
@@ -99,13 +98,13 @@ echo "persistent-tape" > ".(tag)(storage_group)"
 mkdir -p /pnfs/fs/usr/test/arossi/tape/internal
 cd /pnfs/fs/usr/test/arossi/tape/internal
 pwd
-echo "CUSTODIAL" > ".(tag)(RetentionPolicy)"
+echo "NEARLINE" > ".(tag)(AccessLatency)"
 echo "internal" > ".(tag)(storage_group)"
 #make_leaves 0 1 1
 
 cd /pnfs/fs/usr/test/arossi/tape
 pwd
-echo "CUSTODIAL" > ".(tag)(RetentionPolicy)"
+echo "NEARLINE" > ".(tag)(AccessLatency)"
 echo "tape" > ".(tag)(storage_group)"
 #make_leaves 0 1 1
 
