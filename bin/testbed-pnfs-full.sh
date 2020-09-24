@@ -20,8 +20,6 @@ echo "NEARLINE" > ".(tag)(AccessLatency)"
 echo "REPLICA" > ".(tag)(RetentionPolicy)"
 echo "dcache-devel-test" > ".(tag)(file_family)"
 echo "10" > ".(tag)(file_family_width)"
-echo "volatile" > ".(tag)(storage_group)"
-#make_leaves 0 1 1
 
 mkdir -p /pnfs/fs/usr/test/arossi/volatile/wan
 cd /pnfs/fs/usr/test/arossi/volatile/wan
@@ -37,22 +35,31 @@ echo "stage" > ".(tag)(storage_group)"
 
 mkdir -p /pnfs/fs/usr/test/arossi/volatile/tls/off
 cd /pnfs/fs/usr/test/arossi/volatile/tls/off
+pwd
 echo "tls-off" > ".(tag)(storage_group)"
 #make_leaves 0 1 1
 
 mkdir -p /pnfs/fs/usr/test/arossi/volatile/tls/tpc
 cd /pnfs/fs/usr/test/arossi/volatile/tls/tpc
+pwd
 echo "tls-tpc" > ".(tag)(storage_group)"
 #make_leaves 0 1 1
 
 mkdir -p /pnfs/fs/usr/test/arossi/volatile/tls/opt
 cd /pnfs/fs/usr/test/arossi/volatile/tls/opt
+pwd
 echo "tls-optional" > ".(tag)(storage_group)"
 #make_leaves 0 1 1
 
 mkdir -p /pnfs/fs/usr/test/arossi/volatile/tls/req
 cd /pnfs/fs/usr/test/arossi/volatile/tls/req
+pwd
 echo "tls-strict" > ".(tag)(storage_group)"
+#make_leaves 0 1 1
+
+cd /pnfs/fs/usr/test/arossi/volatile
+pwd
+echo "volatile" > ".(tag)(storage_group)"
 #make_leaves 0 1 1
 
 mkdir -p /pnfs/fs/usr/test/arossi/persistent
@@ -62,8 +69,6 @@ echo "ONLINE" > ".(tag)(AccessLatency)"
 echo "REPLICA" > ".(tag)(RetentionPolicy)"
 echo "dcache-devel-test" > ".(tag)(file_family)"
 echo "10" > ".(tag)(file_family_width)"
-echo "persistent" > ".(tag)(storage_group)"
-#make_leaves 0 1 1
 
 mkdir -p /pnfs/fs/usr/test/arossi/persistent/highavail
 cd /pnfs/fs/usr/test/arossi/persistent/highavail
@@ -71,15 +76,18 @@ pwd
 echo "highavail" > ".(tag)(storage_group)"
 #make_leaves 0 1 1
 
+cd /pnfs/fs/usr/test/arossi/persistent
+pwd
+echo "persistent" > ".(tag)(storage_group)"
+#make_leaves 0 1 1
+
 mkdir -p /pnfs/fs/usr/test/arossi/tape
 cd /pnfs/fs/usr/test/arossi/tape
 pwd
 echo "NEARLINE" > ".(tag)(AccessLatency)"
-echo "CUSTODIAL" > ".(tag)(RetentionPolicy)"
 echo "dcache-devel-test" > ".(tag)(file_family)"
 echo "10" > ".(tag)(file_family_width)"
-echo "tape" > ".(tag)(storage_group)"
-#make_leaves 0 1 1
+
 
 mkdir -p /pnfs/fs/usr/test/arossi/tape/persistent
 cd /pnfs/fs/usr/test/arossi/tape/persistent
@@ -91,7 +99,14 @@ echo "persistent-tape" > ".(tag)(storage_group)"
 mkdir -p /pnfs/fs/usr/test/arossi/tape/internal
 cd /pnfs/fs/usr/test/arossi/tape/internal
 pwd
+echo "CUSTODIAL" > ".(tag)(RetentionPolicy)"
 echo "internal" > ".(tag)(storage_group)"
+#make_leaves 0 1 1
+
+cd /pnfs/fs/usr/test/arossi/tape
+pwd
+echo "CUSTODIAL" > ".(tag)(RetentionPolicy)"
+echo "tape" > ".(tag)(storage_group)"
 #make_leaves 0 1 1
 
 cd /pnfs/fs/usr/test/arossi
