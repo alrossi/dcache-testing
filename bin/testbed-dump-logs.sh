@@ -19,6 +19,9 @@ do
 		shift
 		FILTER=$1
 		shift
+	else
+		ARG=""
+		continue
 	fi
 	ARG=$1
 done
