@@ -148,7 +148,6 @@
     </then>
   </if>
 
-
   <appender name="resilience" class="ch.qos.logback.core.rolling.RollingFileAppender">
     <file>${dcache.log.dir}/${dcache.domain.name}.resilience</file>
     <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
@@ -310,6 +309,7 @@
 
     <threshold>
       <appender>stdout</appender>
+      <appender>domains</appender>
       <logger>root</logger>
       <level>${dcache.log.level.file}</level>
     </threshold>
