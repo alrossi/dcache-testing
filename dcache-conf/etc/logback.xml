@@ -309,6 +309,11 @@
 
     <threshold>
       <appender>stdout</appender>
+      <logger>root</logger>
+      <level>${dcache.log.level.file}</level>
+    </threshold>
+
+    <threshold>
       <appender>domains</appender>
       <logger>root</logger>
       <level>${dcache.log.level.file}</level>
